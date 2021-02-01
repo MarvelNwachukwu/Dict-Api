@@ -5,15 +5,6 @@ $(document).ready(function () {
   const resultContainer = $('.popResult');
   const queryName = $('#queryName');
 
-  const clearPreviousResult = () => {
-    if (resultContainer[0].lastElementChild.childNodes.length < 4) {
-      return;
-    } else {
-      console.log('div');
-      resultContainer.remove('div');
-    }
-  };
-
   form.on('submit', (e) => {
     e.preventDefault();
     const inputValue = $('input')[0].value;
@@ -21,6 +12,10 @@ $(document).ready(function () {
   });
 
   const runAPI = (value) => {
+    let exsitingElemLen = $('.testing').length;
+    if (exsitingElemLen > 0) {
+      $('.popResult').empty();
+    }
     const settings = {
       async: true,
       crossDomain: true,
@@ -33,42 +28,42 @@ $(document).ready(function () {
     };
 
     $.ajax(settings).done(function (response) {
-      // console.log(response.meaning);
       let definations = Object.values(response.meaning);
       let partOfSpeech = Object.entries(response.meaning);
 
-      // console.log(partOfSpeech[0]);
-
       // Print User Query Name
-      queryName[0].innerHTML = response.response.toUpperCase();
+      // queryName[0].innerHTML = response.response.toUpperCase();
       displayPG();
-      // definations.forEach((element) => {
-      // console.log(element[0]);
-      // printResult(element, element[0]);
-      // });
+
       partOfSpeech.forEach((element) => {
-        console.log(element[0]);
-        printResult(element[1], element[0]);
+        if (element[1].length > 0) {
+          printResult(element[1], element[0], response.response.toUpperCase());
+        }
       });
+
+      const appendqueryName = () => {};
     });
+
+    $.ajax(settings).fail(function (err) {
+      console.log(err);
+    });
+
     // End of ajax call
     const displayPG = () => {
-      clearPreviousResult();
       resultContainer.height('fit-content');
       resultPage.height('max-content');
       resultPage.show();
     };
-    const printResult = (def, pOS) => {
+    const printResult = (def, pOS, query) => {
       resultContainer.append(
         `
-        <div>
+        <div class='testing'>
           <h3>${pOS}</h3>
           <p>${def}</p>
         </div>
         `
       );
-
-      console.log(resultContainer[0].childNodes.length);
+      // console.log(resultContainer[0].childNodes.length);
     };
   };
 });
