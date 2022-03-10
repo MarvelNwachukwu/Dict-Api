@@ -1,26 +1,40 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Indie Flower", cursive;
+  background: #FDE3A7;
+  /*CAPE HONEY*/
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .search {
   display: block;
+  width: 80vw;
 }
-
 .search h1 {
   margin-top: 1.5rem;
   text-align: center;
   font-family: "Lato", sans-serif;
   font-size: 48px;
 }
-
 .search form input {
   display: block;
   margin: 2rem auto;
-  width: 60%;
+  width: 80%;
+  max-width: 870px;
   padding: 0.75rem;
   border-radius: 300px;
   border: 1px solid black;
@@ -29,45 +43,126 @@
   font-size: 24px;
 }
 
-.result_pg {
+::-moz-selection {
+  background: transparent;
+}
+
+::selection {
+  background: transparent;
+}
+
+h4 {
+  font-size: 26px;
+  line-height: 1px;
+  font-family: "Amatic SC", cursive !important;
+}
+
+.color1 {
+  color: #1BBC9B;
+}
+
+/*MOUNTAIN MEADOW*/
+.color2 {
+  color: #C0392B;
+}
+
+.card {
+  position: relative;
+  color: #013243;
+  /*SHERPA BLUE*/
+  max-width: 870px;
+  width: 80vw;
+  min-height: 50vh;
+  background: #e0e1dc;
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+  box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5), 20px 0 60px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+.card:hover {
+  transform: perspective(2000px);
+  box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 0 10px 100px rgba(0, 0, 0, 0.5);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
   width: 100%;
-  height: 0;
-  min-height: 80vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(blue));
-  background: linear-gradient(180deg, white, blue);
-  font-family: "Lato", sans-serif;
-  padding: 2rem 0;
-  display: none;
+  height: 5px;
+  background: #BAC1BA;
+  transform-origin: bottom;
+  transform: skewX(-45deg);
 }
 
-.result_pg .popResult {
-  padding: 2rem;
-  margin: 5rem auto;
-  width: 60%;
-  height: 0;
-  background: #ececec;
-  -webkit-box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.58);
-          box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.58);
-  -webkit-transition: all 1s;
-  transition: all 1s;
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 5px;
+  height: 100%;
+  background: #92A29C;
+  transform-origin: left;
+  transform: skewY(-45deg);
 }
 
-.result_pg .popResult #queryName {
+.card .imgBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-origin: left;
+  transition: 0.7s;
+}
+
+.card .bark {
+  position: absolute;
+  background: #e0e1dc;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.7s;
+}
+
+.card .imgBox p {
+  min-width: 250px;
+  height: 100%;
+  background: #e0e1dc;
+}
+
+.card:hover .imgBox {
+  transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+  opacity: 1;
+  transition: 0.6s;
+  box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
+}
+
+.card .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  z-index: -1;
+  margin: 1rem 0 0 0;
+  overflow: auto;
+}
+
+.card .details p {
+  font-size: 15px;
+  line-height: auto;
+  padding: 0 0 0 20px;
+}
+
+.card .details h4 {
   text-align: center;
 }
 
-.result_pg .popResult div {
-  font-family: "Lato", sans-serif;
-  margin-top: 1rem;
-}
-
-.result_pg .popResult div h3 {
-  font-size: 21px;
-}
-
-.result_pg .popResult div p {
-  font-size: 18px;
-  margin-left: 1rem;
-  line-height: 1.5rem;
-}
-/*# sourceMappingURL=main.css.map */
+.text-right {
+  text-align: right;
+}/*# sourceMappingURL=main.css.map */
