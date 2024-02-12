@@ -1,9 +1,10 @@
+/*jshint esversion: 6 */
 $(document).ready(function () {
   const form = $('form');
   const input = $('input');
   const resultPage = $('.result_pg');
   const resultContainer = $('.popResult');
-  const queryName = $('#queryName');
+  const cardContent = $('.details');
 
   form.on('submit', (e) => {
     e.preventDefault();
@@ -12,10 +13,11 @@ $(document).ready(function () {
   });
 
   const runAPI = (value) => {
-    let exsitingElemLen = $('.testing').length;
-    if (exsitingElemLen > 0) {
-      $('.popResult').empty();
-    }
+    // let exsitingElemLen = $('.testing').length;
+    // if (exsitingElemLen > 0) {
+    //   cardContent.empty();
+    // }
+    cardContent.empty();
     const settings = {
       async: true,
       crossDomain: true,
@@ -32,7 +34,6 @@ $(document).ready(function () {
       let partOfSpeech = Object.entries(response.meaning);
 
       // Print User Query Name
-      // queryName[0].innerHTML = response.response.toUpperCase();
       displayPG();
 
       partOfSpeech.forEach((element) => {
@@ -55,12 +56,10 @@ $(document).ready(function () {
       resultPage.show();
     };
     const printResult = (def, pOS, query) => {
-      resultContainer.append(
+      cardContent.append(
         `
-        <div class='testing'>
           <h3>${pOS}</h3>
           <p>${def}</p>
-        </div>
         `
       );
       // console.log(resultContainer[0].childNodes.length);
